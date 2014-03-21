@@ -1,5 +1,6 @@
 npm-debug.log
 *.egg-info
-./backend/_activate
-./backend/_flask
-./backend/node_modules
+./_activate
+./_flask
+./node_modules
+./requirements-dev.txt

@@ -189,6 +189,6 @@ module.exports = function( grunt ) {
   grunt.registerTask('test', 'server:phantom mocha');
 
   // Load the build task
-  grunt.loadNpmTasks('yeoman-flask');
+  grunt.loadNpmTasks('generator-flask');
 
 };

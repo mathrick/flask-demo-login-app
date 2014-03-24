@@ -16,4 +16,4 @@ class Message(db.Model):
 
     timestamp = db.Column(db.DateTime, server_default = db.func.current_timestamp())
     unread = db.Column(db.Boolean, default = True)
-    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)

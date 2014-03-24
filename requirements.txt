@@ -5,7 +5,8 @@ Flask==0.10.1
 Flask-SQLAlchemy==1.0
 Flask-WTF==0.9.5
 SQLAlchemy==0.9.3
-sqlalchemy-migrate==0.9
+Flask-Migrate==1.2.0
+Flask-Script==0.6.7
 
 # Automatic deps as brought in when I pip installed Flask
 Jinja2==2.7.2
@@ -21,3 +22,5 @@ WTForms==1.0.5
 decorator==3.4.0
 pbr==0.7.0
 six==1.6.1
+Mako==0.9.1
+alembic==0.6.3

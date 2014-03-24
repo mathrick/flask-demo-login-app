@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(version='0.1',
       name='login',
-      description='Simple login REST service',
+      description='Simple Flask-based login service',
       packages=['app'],
       install_requires=[
           # Flask is kinda crucial :)
@@ -14,6 +14,7 @@ setup(version='0.1',
           'SQLAlchemy==0.9.3',
           'Flask-Migrate==1.2.0',
           'Flask-Script==0.6.7',
+          'Flask-Testing==0.4.1',
 
           # Automatic deps as brought in when I pip installed Flask
           'Jinja2==2.7.2',

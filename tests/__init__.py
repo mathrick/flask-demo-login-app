@@ -1,8 +1,11 @@
-from app import app
-from unittest import TestCase
+from flask import Flask
+from config import TestConfig
+from app import app, db
+from flask.ext.testing import TestCase
 
 class FlaskTestCase(TestCase):
-    def setUp(self):
-        self.client = app.test_client()
-    def tearDown(self):
-        pass
+    def create_app(self):
+        app.config.from_object(TestConfig)
+        db.init_app(app)
+        return app
+

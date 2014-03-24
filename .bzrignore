@@ -4,3 +4,8 @@ npm-debug.log
 ./_flask
 ./node_modules
 ./requirements-dev.txt
+./_activate-flask
+./_dev.txt
+./_pkg.txt
+./_update-reqs.sh
+./db/app.db

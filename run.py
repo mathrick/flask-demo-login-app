@@ -2,9 +2,8 @@
 from flask.ext.script import Manager, Server
 from flask.ext.migrate import Migrate, MigrateCommand
 from app import app, db
-from config import ALEMBIC_MIGRATE_DIR
 
-migrate = Migrate(app, db, directory=ALEMBIC_MIGRATE_DIR)
+migrate = Migrate(app, db, directory=app.config['ALEMBIC_MIGRATE_DIR'])
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)

@@ -3,7 +3,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from os import path
 
 app = Flask(__name__)
-app.config.from_object('config')
+app.config.from_object('config.DevelopmentConfig')
 db = SQLAlchemy(app)
 
 # Function to easily find your assets

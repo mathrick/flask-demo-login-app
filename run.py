@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-from flask.ext.script import Manager, Server
+from flask.ext.script import Manager, Server, Shell
 from flask.ext.migrate import Migrate, MigrateCommand
-from app import app, db
+from app import app, db, models, views
 import unittest
 
 migrate = Migrate(app, db, directory=app.config['ALEMBIC_MIGRATE_DIR'])
@@ -22,6 +22,11 @@ def test():
     t = unittest.defaultTestLoader.discover(".")
     runner = unittest.runner.TextTestRunner()
     runner.run(t)
+
+# Set up imports for the 'shell' command
+def _make_context():
+    return dict(app=app, db=db, models=models, views=views)
+manager.add_command("shell", Shell(make_context=_make_context))
 
 if __name__ == "__main__":
     manager.run(default_command="runserver")

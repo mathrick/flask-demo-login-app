@@ -4,7 +4,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(50), index = True, unique = True)
     email = db.Column(db.String(100), index = True, unique = True)
-    messages = db.relationship('message', backref = 'recipient', lazy = 'dynamic')
+    messages = db.relationship('Message', backref = 'recipient', lazy = 'dynamic')
     
     def __repr__(self):
         return "<User %s>" % self.name

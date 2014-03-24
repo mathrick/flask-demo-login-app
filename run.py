@@ -17,10 +17,12 @@ manager.add_command('db', MigrateCommand)
 manager.add_command('runserver', MyServer)
 
 # Run the testsuite instead of the normal server
-@manager.command
-def test():
+@manager.option('-v','--verbose','-e', '--echo', dest='echo', default=False, action='store_true', help="Echo generated SQL to stderr")
+def test(echo):
     t = unittest.defaultTestLoader.discover(".")
     runner = unittest.runner.TextTestRunner()
+    if echo:
+        app.config['SQLALCHEMY_ECHO'] = True
     runner.run(t)
 
 # Set up imports for the 'shell' command

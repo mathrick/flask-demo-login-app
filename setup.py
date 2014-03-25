@@ -1,4 +1,18 @@
 from setuptools import setup
+from setuptools.command.test import test as TestCommand
+import sys
+
+class PyTest(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = ['tests']
+        self.test_suite = True
+    def run_tests(self):
+        #import here, cause outside the eggs aren't loaded
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
+
 
 setup(version='0.1',
       name='login',
@@ -33,5 +47,6 @@ setup(version='0.1',
           'Mako==0.9.1',
           'alembic==0.6.3',
       ],
-      test_suite="tests",
-  )
+      tests_require=['pytest'],
+      cmdclass = {'test': PyTest},
+)

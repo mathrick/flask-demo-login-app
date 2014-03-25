@@ -2,7 +2,7 @@
 from flask.ext.script import Manager, Server, Shell
 from flask.ext.migrate import Migrate, MigrateCommand
 from app import app, db, models, views
-import unittest
+import pytest
 
 migrate = Migrate(app, db, directory=app.config['ALEMBIC_MIGRATE_DIR'])
 
@@ -21,11 +21,9 @@ manager.add_command('runserver', MyServer)
                 default=False, action='store_true',
                 help="Echo generated SQL to stderr")
 def test(echo):
-    t = unittest.defaultTestLoader.discover(".")
-    runner = unittest.runner.TextTestRunner()
     if echo:
         app.config['SQLALCHEMY_ECHO'] = True
-    runner.run(t)
+    pytest.main('tests')
 
 # Set up imports for the 'shell' command
 def _make_context():

@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container" style="margin-top:50px">
+<div>
   <div class="jumbotron">
     <h1>I will not buy this record, it is scratched</h1>
-    <a href="{{ url_for('index') }}" class="btn btn-default">Login</a>
+    <a href="{{ url_for('login') }}" class="btn btn-primary">Login »</a>
+    <a href="{{ url_for('sign_up') }}" class="btn btn-default">Sign up</a>
   </div>
 </div>
 {% endblock %}

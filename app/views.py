@@ -3,6 +3,10 @@ from app import app
 from app.decorators import json_result
 
 @app.route('/')
-@json_result
 def index():
+    return render_template("index.html")
+
+@app.route('/api/test')
+@json_result
+def api_test():
     return {"message": "My hovercraft is full of eels"}

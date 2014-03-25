@@ -17,7 +17,9 @@ manager.add_command('db', MigrateCommand)
 manager.add_command('runserver', MyServer)
 
 # Run the testsuite instead of the normal server
-@manager.option('-v','--verbose','-e', '--echo', dest='echo', default=False, action='store_true', help="Echo generated SQL to stderr")
+@manager.option('-v','--verbose','-e', '--echo', dest='echo',
+                default=False, action='store_true',
+                help="Echo generated SQL to stderr")
 def test(echo):
     t = unittest.defaultTestLoader.discover(".")
     runner = unittest.runner.TextTestRunner()

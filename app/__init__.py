@@ -12,4 +12,4 @@ app.jinja_env.globals['static'] = (
     lambda filename: url_for('static', filename = filename)
 )
 
-from app import views, models
+from app import views, models, forms

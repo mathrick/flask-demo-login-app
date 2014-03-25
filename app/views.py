@@ -1,5 +1,5 @@
 from flask import render_template
-from app import app
+from app import app, forms
 from app.decorators import json_result
 
 @app.route('/')
@@ -12,7 +12,8 @@ def login():
     
 @app.route('/sign-up', methods=["GET", "POST"])
 def sign_up():
-    return render_template("sign-up.html")
+    form = forms.SignUpForm()
+    return render_template("sign-up.html", form=form)
     
 @app.route('/api/test')
 @json_result

@@ -4,7 +4,21 @@
 <div>
   <div class="jumbotron">
     <h1>We're in search of <br/><small>knights who will join me and my court at Camelot</small></h1>
-    Eventually, you will be able to sign up on this page. But right now the forms aren't ready yet...
+  </div>
+  <div class="container">
+    <form action="">
+      {{ form.hidden_tag() }}
+      <p><strong>What</strong> is your name?
+        {{ form.name(size=60) }}
+      </p>
+      <p><strong>What</strong> is your email?
+        {{ form.email(size=60) }}
+      </p>
+      <p><strong>What</strong> is your password?
+        {{ form.password(size=60) }}
+      </p>
+      <p><input type="submit" name="" value="Sign Up"/></p>
+    </form>
   </div>
 </div>
 {% endblock %}

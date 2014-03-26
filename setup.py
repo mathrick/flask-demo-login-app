@@ -29,6 +29,8 @@ setup(version='0.1',
           'Flask-Migrate==1.2.0',
           'Flask-Script==0.6.7',
           'Flask-Testing==0.4.1',
+          'Flask-Bcrypt==0.5.2',
+          'pytest==2.5.2',
 
           # Automatic deps as brought in when I pip installed Flask
           'Jinja2==2.7.2',
@@ -37,6 +39,8 @@ setup(version='0.1',
           'argparse==1.2.1',
           'itsdangerous==0.23',
           'wsgiref==0.1.2',
+          'py==1.4.20',
+          'py-bcrypt==0.4',
 
           # Other automatic deps
           'Tempita==0.5.2',

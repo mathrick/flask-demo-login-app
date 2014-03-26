@@ -16,12 +16,18 @@ The easiest way to run and deploy the app is by using python virtualenvs. Make s
 
 Other requirements
 ------------------
+For security reasons, the app uses py-bcrypt for password hashing. That module is not in the standard library, and it accesses a C library, which means you will need to have the compiler, as well as C Python headers installed. On Debian/Ubuntu, you can use the following to install them:
+
+    sudo apt-get install python-dev
+
 SQLite3 is used as the DB, so you will need to have that installed and accessible to your Python. Almost all distributions ship and install sqlite by default, so you will likely have it already. But if not, something like
 
     sudo apt-get install libsqlite3-0
 
 or an equivalent for your distribution should get it.
 
+Running
+-------
 Assuming everything installed correctly, you can now do:
 
     ./run.py test

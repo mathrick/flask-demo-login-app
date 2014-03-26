@@ -1,7 +1,6 @@
 from flask import render_template, url_for, redirect, flash
-from app import db, app, forms, models
+from app import db, app, forms, models, bcrypt
 from sqlalchemy.exc import IntegrityError
-from app.password import bcrypt
 from app.decorators import json_result
 
 @app.route('/')

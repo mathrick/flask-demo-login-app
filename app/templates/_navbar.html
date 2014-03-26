@@ -1,8 +1,16 @@
-{% set navbar = [
-    ('index', 'Camelot'),
-    ('sign_up', 'Sign up'),
-    ('login', 'Login')
-] -%}
+{% set user = get_authenticated_user() %}
+{% set navbar = [('index', 'Camelot')]
+                +
+                ([] if user 
+                else
+                [('sign_up', 'Sign up'),
+                 ('login', 'Login')])
+ -%}
+{% set navbar_right = [('inbox', 'Inbox'),
+                       ('logout', 'Log out')] 
+                      if user else 
+                      []
+ -%}
 {% set active_page = active_page|default('index') -%}
 
 <div class="navbar navbar-inverse" role="navigation">
@@ -12,7 +20,16 @@
       {% for id, caption in navbar %}
       {% set active="class=active" if (id == active_page) %}
       <li {{active}}><a href="{{ url_for(id) }}">{{ caption }}</a></li>
+
       {% endfor %}
-    </ul>  
+    </ul>
+    {% if navbar_right %}
+    <ul class="nav navbar-nav navbar-right">
+      {% for id, caption in navbar_right %}
+      {% set active="class=active" if (id == active_page) %}
+      <li {{active}}><a href="{{ url_for(id) }}">{{ caption }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
   </div>
 </div>

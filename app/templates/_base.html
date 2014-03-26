@@ -22,6 +22,7 @@
     {%- include "_navbar.html" -%}
     {#- This is an ugly workaround for Jinja2's scoping issues. -#}
     {{- "" if active_page -}}
+    {{- "" if user -}}
 
     {% with messages = get_flashed_messages(with_categories=True) %}
     {% for category, message in messages %}

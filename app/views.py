@@ -1,6 +1,6 @@
 from flask import render_template, url_for, redirect, flash, g
 from app import db, app, forms, models, bcrypt
-from flask.ext.login import login_user, current_user, login_required
+from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy.exc import IntegrityError
 from app.decorators import json_result
 
@@ -22,6 +22,12 @@ def login():
             return redirect(url_for('index'))
         flash("Invalid email or password", "danger")
     return render_template("login.html", form=form)
+
+@app.route('/logout')
+def logout():
+    if current_user.is_authenticated():
+        logout_user()
+    return redirect(url_for('index'))
     
 @app.route('/sign-up', methods=["GET", "POST"])
 def sign_up():

@@ -23,6 +23,12 @@
     {#- This is an ugly workaround for Jinja2's scoping issues. -#}
     {{- "" if active_page -}}
 
+    {% with messages = get_flashed_messages(with_categories=True) %}
+    {% for category, message in messages %}
+        <div class="container alert alert-{{category|default('info')}}">{{ message }}</div>
+    {% endfor %}
+    {% endwith %}
+
     {% block body %}
     {% endblock %}
 

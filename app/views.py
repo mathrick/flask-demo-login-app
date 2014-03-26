@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect
+from flask import render_template, url_for, redirect, flash
 from app import db, app, forms, models
 from sqlalchemy.exc import IntegrityError
 from app.password import bcrypt
@@ -21,6 +21,7 @@ def sign_up():
     if form.validate_on_submit():
         try:
             make_new_user(form)
+            flash("You have been successfully registered", "success")
             return redirect(url_for('index'))
         except IntegrityError:
             form.email.errors += ['This email has been registered already']

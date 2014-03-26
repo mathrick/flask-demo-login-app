@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
+{% set title = "Welcome to Camelot" %}
+{% set active_page = "index" %}
 
 {% block body %}
 <div>
-  <div class="jumbotron">
+  <div class="jumbotron container">
     <h1>I will not buy this record, it is scratched</h1>
+    <blockquote class="blockquote-reverse">
+      My hovercraft is full of eels
+      <footer>Dirty Hungarian Phrasebook</footer>
+    </blockquote>
     <a href="{{ url_for('login') }}" class="btn btn-primary">Login »</a>
     <a href="{{ url_for('sign_up') }}" class="btn btn-default">Sign up</a>
   </div>

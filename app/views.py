@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, flash, g
+from flask import render_template, url_for, redirect, flash, abort
 from app import db, app, forms, models, bcrypt
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy.exc import IntegrityError
@@ -56,10 +56,16 @@ def message(id):
     if not id:
         return redirect(url_for('inbox'))
     message = models.Message.query.get(id)
+    if not message:
+        abort(404)
     message.unread = False
     db.session.commit()
     return render_template('message.html', message=message, user=message.recipient)
 
+@app.errorhandler(404)
+def not_found(error):
+    return render_template("404.html"), 404
+    
 def send_welcome_message(user):
     messages = ["My hovercraft is full of eels",
                 "African swallow is bigger than European swallow",

@@ -13,6 +13,7 @@ class TestConfig(Config):
     # Disable error catching
     # TESTING = True
     # In-memory DB
+    WTF_CSRF_ENABLED = False
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
 class DevelopmentConfig(Config):

@@ -1,5 +1,4 @@
 from . import FlaskTestCase
-from unittest import skip, skipIf
 from app import db
 from app.models import User, Message
 from datetime import datetime, timedelta

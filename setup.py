@@ -30,6 +30,7 @@ setup(version='0.1',
           'Flask-Script==0.6.7',
           'Flask-Testing==0.4.1',
           'Flask-Bcrypt==0.5.2',
+          'Flask-Login==0.2.10',
           'pytest==2.5.2',
 
           # Automatic deps as brought in when I pip installed Flask

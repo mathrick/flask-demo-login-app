@@ -42,10 +42,21 @@ def sign_up():
     return render_template("sign-up.html", form=form)
 
 @login_required
+@app.route('/message/')
 @app.route('/inbox')
 def inbox():
-    return "Inbox yo"
+    messages = models.Message.query.filter_by(recipient=current_user).all()
+    return render_template('inbox.html', user=current_user, messages=messages)
 
+@login_required
+@app.route('/message/<int:id>')
+def message(id):
+    if not id:
+        return redirect(url_for('inbox'))
+    message = models.Message.query.get(id)
+    message.unread = False
+    db.session.commit()
+    return render_template('message.html', message=message, user=message.recipient)
     
 def make_new_user(form):
     u = models.User(name=form.name.data,

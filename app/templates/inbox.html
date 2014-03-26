@@ -1,0 +1,40 @@
+{% extends '_base.html' %}
+{% set title = "Inbox" %}
+{% set active_page = "inbox" %}
+
+{% block body %}
+<div>
+  <div class="jumbotron container">
+    <h1>Welcome, {{user.name}}!</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">Inbox</h3></div>
+    {% if messages %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Sent date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for message in messages%}
+        <tr>
+          <td class="text-center"><span class="glyphicon glyphicon-envelope {{ 'invisible' if not message.unread }}"> </span></td>
+          <td><a href="{{ url_for('message', id=message.id)}}">{{ message.title }}</a></td>
+          <td>{{ message.timestamp }}</td>
+        {% endfor%}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="panel-body">
+      <div class="text-muted">You have no messages</div>
+    </div>
+    {% endif %}
+  </div>  
+</div>
+{% endblock %}

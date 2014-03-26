@@ -1,23 +1,26 @@
 {% extends 'base.html' %}
-
+{% from '_formhelpers.html' import form_field %}
 {% block body %}
 <div>
   <div class="jumbotron">
     <h1>We're in search of <br/><small>knights who will join me and my court at Camelot</small></h1>
   </div>
   <div class="container">
-    <form action="">
+    <form action="{{ url_for('sign_up' )}}" method="POST">
       {{ form.hidden_tag() }}
-      <p><strong>What</strong> is your name?
-        {{ form.name(size=60) }}
-      </p>
-      <p><strong>What</strong> is your email?
-        {{ form.email(size=60) }}
-      </p>
-      <p><strong>What</strong> is your password?
-        {{ form.password(size=60) }}
-      </p>
-      <p><input type="submit" name="" value="Sign Up"/></p>
+      {% call form_field(form.name, size=40) %}
+      <em>What</em> is your name?
+      {% endcall %}
+      {% call form_field(form.email, size=40) %}
+      <em>What</em> is your email?
+      {% endcall %}
+      {% call form_field(form.password, size=40) %}
+      <em>What</em> is your password?
+      {% endcall %}
+      {% call form_field(form.confirm, size=40) %}
+      <em>What</em> is your password again?
+      {% endcall %}
+      <input type="submit" name="" class="btn btn-primary" value="Sign Up"/>
     </form>
   </div>
 </div>

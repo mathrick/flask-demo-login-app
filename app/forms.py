@@ -1,9 +1,14 @@
 from flask.ext.wtf import Form
 from wtforms import TextField, BooleanField, PasswordField
-from wtforms.fields.html5 import EmailField
-from wtforms.validators import Required, Email
+from wtforms.validators import DataRequired, Email, EqualTo
 
 class SignUpForm(Form):
-    name = TextField('name', validators=[Required])
-    email = EmailField('email', validators=[Required, Email])
-    password = PasswordField('password', validators=[Required])
+    name = TextField('name', validators=[DataRequired()])
+    email = TextField('email', validators=[DataRequired(), Email()])
+    password = PasswordField('password', validators=[DataRequired(),
+                                                     EqualTo('confirm', message='Passwords must match')])
+    confirm = PasswordField('confirm password', validators=[DataRequired()])
+
+class LoginForm(Form):
+    email = TextField('email', validators=[DataRequired(), Email()])
+    password = PasswordField('password', validators=[DataRequired()])

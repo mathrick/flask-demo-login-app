@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
 {% set title = "Come into the Camelot" %}
 {% set active_page = "login" %}
-
+{% from '_formhelpers.html' import form_field %}
 {% block body %}
 <div>
   <div class="jumbotron">
-    <h1><em>What</em> is your name?</h1>
-    Eventually, you will be able to login on this page. But right now the forms aren't ready yet...
+    <h1>Stop! <br/><small>Who will cross the Bridge of Death must answer me these questions three.</small></h1>
+  </div>
+  <div class="container">
+    <form action="{{ url_for('sign_up' )}}" method="POST">
+      {{ form.hidden_tag() }}
+      <p>
+        {% call form_field(form.email, size=40) %}
+        <em>What</em> is your email?
+        {% endcall %}
+      </p>
+      <p>
+        {% call form_field(form.password, size=40) %}
+        <em>What</em> is your password?
+        {% endcall %}
+      </p>
+      <p><input type="submit" name="" class="btn btn-primary" value="Log in"/></p>
+    </form>
   </div>
 </div>
 {% endblock %}

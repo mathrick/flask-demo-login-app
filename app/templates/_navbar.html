@@ -1,4 +1,5 @@
 {% set user = get_authenticated_user() %}
+{% set unread = get_unread_count() %}
 {% set navbar = [('index', 'Camelot')]
                 +
                 ([] if user 
@@ -20,14 +21,17 @@
       {% for id, caption in navbar %}
       {% set active="class=active" if (id == active_page) %}
       <li {{active}}><a href="{{ url_for(id) }}">{{ caption }}</a></li>
-
       {% endfor %}
     </ul>
     {% if navbar_right %}
     <ul class="nav navbar-nav navbar-right">
       {% for id, caption in navbar_right %}
       {% set active="class=active" if (id == active_page) %}
-      <li {{active}}><a href="{{ url_for(id) }}">{{ caption }}</a></li>
+      <li {{active}}>
+        <a href="{{ url_for(id) }}">{{ caption }}
+          {%- if (id == 'inbox') and unread %} <span class="badge">{{ unread }}</span>{% endif -%}
+        </a>
+      </li>
       {% endfor %}
     </ul>
     {% endif %}

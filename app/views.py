@@ -3,6 +3,7 @@ from app import db, app, forms, models, bcrypt
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy.exc import IntegrityError
 from app.decorators import json_result
+import random
 
 @app.route('/')
 def index():
@@ -27,6 +28,7 @@ def login():
 def logout():
     if current_user.is_authenticated():
         logout_user()
+        flash("You have been logged out", "info")
     return redirect(url_for('index'))
     
 @app.route('/sign-up', methods=["GET", "POST"])
@@ -57,12 +59,26 @@ def message(id):
     message.unread = False
     db.session.commit()
     return render_template('message.html', message=message, user=message.recipient)
-    
+
+def send_welcome_message(user):
+    messages = ["My hovercraft is full of eels",
+                "African swallow is bigger than European swallow",
+                "We are the Knight Who Say Ni"
+            ]
+    db.session.add(models.Message(recipient=user,
+                                  title="Welcome!",
+                                  text=random.choice(messages)))
+
+def get_unread_count():
+    if current_user.is_authenticated():
+        return models.Message.query.filter_by(recipient=current_user, unread=True).count()
+
 def make_new_user(form):
     u = models.User(name=form.name.data,
                     email=form.email.data,
                     pw_hash=bcrypt.generate_password_hash(form.password.data))
     db.session.add(u)
+    send_welcome_message(u)
     db.session.commit()
 
 def authenticate_user(form):

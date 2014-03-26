@@ -8,7 +8,7 @@
     <h1>Stop! <br/><small>Who will cross the Bridge of Death must answer me these questions three.</small></h1>
   </div>
   <div class="container">
-    <form action="{{ url_for('sign_up' )}}" method="POST">
+    <form action="{{ url_for('login' )}}" method="POST">
       {{ form.hidden_tag() }}
       <p>
         {% call form_field(form.email, size=40) %}

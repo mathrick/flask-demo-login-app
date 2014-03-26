@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{{ title or "Welcome to Camelot" }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -19,11 +19,9 @@
         <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
 
-    <div class="navbar navbar-inverse" role="navigation">
-      <div class="container">
-        <a class="navbar-brand" href="{{ url_for('index') }}">To Camelot!</a>
-      </div>
-    </div>
+    {%- include "_navbar.html" -%}
+    {#- This is an ugly workaround for Jinja2's scoping issues. -#}
+    {{- "" if active_page -}}
 
     {% block body %}
     {% endblock %}

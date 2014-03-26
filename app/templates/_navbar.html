@@ -1,0 +1,18 @@
+{% set navbar = [
+    ('index', 'Camelot'),
+    ('sign_up', 'Sign up'),
+    ('login', 'Login')
+] -%}
+{% set active_page = active_page|default('index') -%}
+
+<div class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('index') }}">For the Holy Grail!</a>
+    <ul class="nav navbar-nav">
+      {% for id, caption in navbar %}
+      {% set active="class=active" if (id == active_page) %}
+      <li {{active}}><a href="{{ url_for(id) }}">{{ caption }}</a></li>
+      {% endfor %}
+    </ul>  
+  </div>
+</div>

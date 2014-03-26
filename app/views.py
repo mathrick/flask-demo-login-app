@@ -55,7 +55,8 @@ def make_new_user(form):
     db.session.commit()
 
 def authenticate_user(form):
-    return models.User.query.filter_by(email=form.email.data).first()
+    u = models.User.query.filter_by(email=form.email.data).first()
+    return u if bcrypt.check_password_hash(u.pw_hash, form.password.data) else None
         
     
 @app.route('/api/test')

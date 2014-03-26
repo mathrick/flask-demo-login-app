@@ -19,6 +19,9 @@
         {% call form_field(form.password, size=40) %}
         <em>What</em> is your password?
         {% endcall %}
+        {% call form_field(form.remember) %}
+        Shall we remember you?
+        {% endcall %}
       </p>
       <p><input type="submit" name="" class="btn btn-primary" value="Log in"/></p>
     </form>

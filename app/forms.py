@@ -12,3 +12,4 @@ class SignUpForm(Form):
 class LoginForm(Form):
     email = TextField('email', validators=[DataRequired(), Email()])
     password = PasswordField('password', validators=[DataRequired()])
+    remember = BooleanField('remember', default=False)

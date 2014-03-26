@@ -10,8 +10,12 @@
       My hovercraft is full of eels
       <footer>Dirty Hungarian Phrasebook</footer>
     </blockquote>
+    {% if user %}
+    <a href="{{ url_for('inbox') }}" class="btn btn-primary">Your inbox »</a>
+    {% else %}
     <a href="{{ url_for('login') }}" class="btn btn-primary">Login »</a>
     <a href="{{ url_for('sign_up') }}" class="btn btn-default">Sign up</a>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

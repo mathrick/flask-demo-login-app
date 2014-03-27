@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect, flash, abort
+from flask import render_template, url_for, redirect, request, flash, abort
 from app import db, app, forms, models, bcrypt
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy.exc import IntegrityError
@@ -12,17 +12,19 @@ def index():
         user = current_user
     return render_template("index.html", user=user)
 
+app.login_manager.login_view = "login"
 @app.route('/login', methods=["GET", "POST"])
 def login():
     form = forms.LoginForm()
+    next_url = request.args.get('next', url_for('index'))
     if form.validate_on_submit():
         u = authenticate_user(form)
         if u:
             flash("You have been successfully logged in", "success")
             login_user(u)
-            return redirect(url_for('index'))
+            return redirect(next_url)
         flash("Invalid email or password", "danger")
-    return render_template("login.html", form=form)
+    return render_template("login.html", form=form, next_url=next_url)
 
 @app.route('/logout')
 def logout():
@@ -58,6 +60,8 @@ def message(id):
     message = models.Message.query.get(id)
     if not message:
         abort(404)
+    if message.recipient != current_user:
+        return app.login_manager.unauthorized()
     message.unread = False
     db.session.commit()
     return render_template('message.html', message=message, user=message.recipient)

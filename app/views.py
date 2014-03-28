@@ -1,5 +1,5 @@
 from flask import render_template, url_for, redirect, request, flash, abort
-from app import db, app, forms, models, bcrypt
+from app import db, app, forms, models, api, bcrypt
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from sqlalchemy.exc import IntegrityError
 from app.decorators import json_result
@@ -47,9 +47,9 @@ def sign_up():
 
 @login_required
 @app.route('/message/')
-@app.route('/inbox')
+@app.route('/inbox/')
 def inbox():
-    messages = models.Message.query.filter_by(recipient=current_user).all()
+    messages = api.MessageList().get()
     return render_template('inbox.html', user=current_user, messages=messages)
 
 @login_required

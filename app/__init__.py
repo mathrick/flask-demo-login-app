@@ -15,6 +15,6 @@ login_manager = LoginManager(app)
 app.jinja_env.globals['static'] = lambda filename: url_for('static', filename = filename)
 app.jinja_env.globals['get_authenticated_user'] = lambda: current_user if current_user.is_authenticated() else None
 
-from app import views, models, forms
+from app import views, models, forms, api
 
 app.jinja_env.globals['get_unread_count'] = views.get_unread_count

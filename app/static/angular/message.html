@@ -1,12 +1,14 @@
-<div class="container">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        <a href="/inbox/" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span></a> 
-        {{ message.title }}
-        <span class="text-muted">{{ message.timestamp }}</span>
-      </h3>
+<div class="panel panel-default">
+  <div class="panel-heading clearfix">
+    <div class="btn-group pull-left col-sm-1 nav-buttons">
+      <a href="/inbox/" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-left"></span></a> 
     </div>
-    <div class="panel-body">{{ message.text }}</div>
-  </div>  
+    <h4 class="panel-title pull-left inbox-title">
+      {{ message.title }}
+    </h4>
+    <h3 class="panel-title pull-right">
+      <span class="text-muted">{{ message.timestamp }}</span>
+    </h3>
+  </div>
+  <div class="col-sm-offset-1 panel-body">{{ message.text }}</div>
 </div>

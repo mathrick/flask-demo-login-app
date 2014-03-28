@@ -1,7 +1,10 @@
 <div class="panel panel-default">
-  <div class="panel-heading"><h3 class="panel-title">Inbox
-      <a href="#/compose" class="btn btn-default"><span class="glyphicon glyphicon-pencil">Compose</span></a>
-    </h3> 
+  <div class="panel-heading clearfix">
+    <div class="btn-group pull-left col-sm-1 nav-buttons"></div>
+    <h4 class="panel-title pull-left inbox-title">Inbox</h4>
+    <div class="btn-group pull-right">
+      <a href="#/compose" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil">Compose</span></a>
+    </div>
   </div>
   <table class="table" ng-if="messages">
     <thead>

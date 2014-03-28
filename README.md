@@ -1,6 +1,6 @@
 Basic login app
 ===============
-This is a simple webapp implementing login functionality, built on Flask.
+This is a simple webapp implementing login functionality, built on Flask and AngularJS.
 
 Installing and running
 ======================
@@ -49,6 +49,7 @@ Project structure:
            templates/
               ...
            static/
+              angular/
               ...
         tests/
            ...
@@ -66,6 +67,7 @@ The app is built on the standard MVC model you'd expect, modulo some naming diff
  * `__init__.py` is just the application init code.
  * `templates/` holds Jinja2 templates, as expected.
  * `static/` contains all the assets, ie. Javascript and CSS.
+  * `angular/` contains AngularJS templates
 * `tests/` contains the test suite, which can be run with `run.py`.
 * `config.py` contains the Flask app configuration.
 * `run.py` is the runner script, implementing a number of commands via Flask-Script. Running it without argument will launch the local development server, `run.py test` will launch the test suite, and `run.py db` has a number of subcommands for creating the database and applying migrations. `run.py --help` will show you all the details.

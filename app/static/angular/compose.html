@@ -35,7 +35,8 @@
         </div>
         <div class="control-group" >
           <div class="col-sm-offset-10 col-sm-2">
-            <input class="form-control btn btn-primary" type="submit" value="Send" ng-disabled="compose.$invalid"/>
+            <input class="form-control btn btn-primary" type="submit" value="Send" 
+                   ng-disabled="compose.$invalid" ng-click="send()"/>
           </div>
         </div>
       </form>

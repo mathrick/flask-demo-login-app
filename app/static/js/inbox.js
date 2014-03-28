@@ -25,21 +25,21 @@ InboxApp.controller('ComposeCtrl',
                          });
 
                          $scope.message = {};
+
+                         $scope.send = function() {
+                             $http.post('/api/message/', $scope.message)
+                         }
                      }])
 
 InboxApp.config(['$routeProvider', function($route) {
     $route
-        .when('/message/compose', {
+        .when('/compose', {
             templateUrl: '/static/angular/compose.html',
             controller: 'ComposeCtrl'
         })
-        .when('/message/:messageId', {
+        .when('/:messageId', {
             templateUrl: '/static/angular/message.html',
             controller: 'MessageCtrl'
-        })
-        .when('/inbox/', {
-            templateUrl: '/static/angular/inbox.html',
-            controller: 'InboxCtrl'
         })
         .otherwise({
             templateUrl: '/static/angular/inbox.html',

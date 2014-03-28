@@ -1,4 +1,4 @@
-var InboxApp = angular.module('InboxApp', ['ngRoute', 'ui.bootstrap']);
+var InboxApp = angular.module('InboxApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
 
 InboxApp.controller('InboxCtrl', 
                     ['$scope', '$http',

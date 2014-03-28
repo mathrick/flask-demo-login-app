@@ -1,3 +1,5 @@
+@import url("animation.css");
+
 /* Space out content a bit */
 body {
     padding-bottom: 20px;
@@ -53,6 +55,11 @@ body {
 
 .marketing p + h4 {
     margin-top: 28px;
+}
+
+.container .panel {
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 /* Fix vertical alignment in panel headers*/

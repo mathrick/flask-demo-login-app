@@ -5,6 +5,7 @@
 {% block body %}
 <script src="{{ static('js/angular.js') }}"></script>
 <script src="{{ static('js/angular-route.js') }}"></script>
+<script src="{{ static('js/angular-animate.js') }}"></script>
 <script src="{{ static('js/inbox.js') }}"></script>
 <div>
   <div class="jumbotron container">
@@ -12,7 +13,7 @@
   </div>
 </div>
 
-<div class="container" ng-app="InboxApp">
-  <div ng-view>
+<div class="container view-animate-container" ng-app="InboxApp">
+  <div ng-view class="view-animate">
 </div>
 {% endblock %}

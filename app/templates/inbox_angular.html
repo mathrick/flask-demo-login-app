@@ -1,0 +1,26 @@
+  <div class="panel panel-default" ng-controller="InboxCtrl">
+    <div class="panel-heading"><h3 class="panel-title">Inbox</h3></div>
+    <div ng-if="messages">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Sent date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="message in messages">
+            <td class="text-center"><span class="glyphicon glyphicon-envelope {{ message.unread ? '' : 'invisible' }}"> </span></td>
+            <td><a href="/message/{{ message.id }}">{{ message.title }}</a></td>
+            <td>{{ message.timestamp }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div ng-if="!messages">
+      <div class="panel-body">
+        <div class="text-muted">You have no messages</div>
+      </div>
+    </div>
+  </div>

@@ -15,6 +15,17 @@ login_manager = LoginManager(app)
 app.jinja_env.globals['static'] = lambda filename: url_for('static', filename = filename)
 app.jinja_env.globals['get_authenticated_user'] = lambda: current_user if current_user.is_authenticated() else None
 
+angular_syntax = {
+    'block_start_string': '{{{%',
+    'block_end_string': '%}}}',
+    'variable_start_string': '{{{',
+    'variable_end_string': '}}}',
+    'comment_start_string': '{{{#',
+    'comment_end_string': '}}}',
+}
+
+app.angular_env = app.jinja_env.overlay(**angular_syntax)
+
 from app import views, models, forms, api
 
 app.jinja_env.globals['get_unread_count'] = views.get_unread_count

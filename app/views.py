@@ -50,7 +50,8 @@ def sign_up():
 @app.route('/inbox/')
 def inbox():
     messages = api.MessageList().get()
-    return render_template('inbox.html', user=current_user, messages=messages)
+    body = app.angular_env.get_template('inbox_angular.html').render()
+    return render_template('inbox.html', angular_body = body, user=current_user, messages=messages)
 
 @login_required
 @app.route('/message/<int:id>')

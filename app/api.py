@@ -58,7 +58,9 @@ class Message(Resource):
         if not message:
             abort(404, message="Invalid message id")
         if message.recipient == current_user:
-            return  message
+            message.unread = False
+            db.session.commit()
+            return message
         else:
             abort(403)
 
@@ -73,7 +75,7 @@ class UserList(Resource):
     @api_login_required
     def get(self):
         return {user.email: user.name for
-                user in models.User.query.filter(models.User.id != current_user.id).all()}
+                user in models.User.query.all()}
 
 api = Api(app)
 api.add_resource(MessageList, '/api/message/', endpoint='api_message_list')

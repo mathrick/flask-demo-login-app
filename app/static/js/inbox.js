@@ -24,7 +24,7 @@ InboxApp.controller('ComposeCtrl',
                              $scope.emails = Object.keys(data);
                          });
 
-                         $scope.message = {};
+                         $scope.message = { text: ""};
 
                          $scope.send = function() {
                              $http.post('/api/message/', $scope.message)

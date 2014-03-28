@@ -17,8 +17,8 @@ InboxApp.controller('MessageCtrl',
                      }])
 
 InboxApp.controller('ComposeCtrl', 
-                    ['$scope', '$http', '$routeParams', 
-                     function InboxCtrl ($scope, $http, $params) {
+                    ['$scope', '$http', '$routeParams', '$location',
+                     function InboxCtrl ($scope, $http, $params, $location) {
                          $http.get('/api/users').success(function(data) {
                              $scope.users = data;
                              $scope.emails = Object.keys(data);
@@ -27,7 +27,8 @@ InboxApp.controller('ComposeCtrl',
                          $scope.message = { text: ""};
 
                          $scope.send = function() {
-                             $http.post('/api/message/', $scope.message)
+                             $http.post('/api/message/', $scope.message);
+                             $location.path('/');
                          }
                      }])
 

@@ -32,7 +32,24 @@ def logout():
         logout_user()
         flash("You have been logged out", "info")
     return redirect(url_for('index'))
-    
+
+
+@app.route('/populate-users', endpoint='populate-users')
+def make_some_users():
+    # For debug purposes only
+    users = [('King Arthur', 'arthur@camelot.org'),
+             ('Sir Lancelot', 'lancelot@camelot.org'),
+             ('Sir Robin', 'robinthebrave@camelot.org'),
+    ]
+    for name, email in users:
+        if not models.User.query.filter_by(email=email).first():
+            db.session.add(models.User(name=name, email=email,
+                                       pw_hash=bcrypt.generate_password_hash('asd')))
+    db.session.commit()
+
+    users = models.User.query.all()
+    return render_template("users.html", users=users)
+
 @app.route('/sign-up', methods=["GET", "POST"])
 def sign_up():
     form = forms.SignUpForm()

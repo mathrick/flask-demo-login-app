@@ -1,0 +1,15 @@
+{% extends '_base.html' %}
+{% set title = "Users" %}
+{% set active_page = "populate-users" %}
+{% block body %}
+<div>
+  <div class="jumbotron">
+    <h1>Done! <br/><small>We have several users now:</small></h1>
+  </div>
+  <div class="container">
+    {% for user in users %}
+    <div>{{ user.name}}: {{ user.email }}</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

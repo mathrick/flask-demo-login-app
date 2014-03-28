@@ -7,7 +7,8 @@
                 [('sign_up', 'Sign up'),
                  ('login', 'Login')])
  -%}
-{% set navbar_right = [('inbox', 'Inbox'),
+{% set navbar_right = [('populate-users', 'Create some users'),
+                       ('inbox', 'Inbox'), 
                        ('logout', 'Log out')] 
                       if user else 
                       []
@@ -28,7 +29,7 @@
       {% for id, caption in navbar_right %}
       {% set active="class=active" if (id == active_page) %}
       <li {{active}}>
-        <a href="{{ url_for(id) }}">{{ caption }}
+        <a href="{{ url_for(id) }}" {% if id == 'populate-users' %}style="color: red !important;"{% endif %}>{{ caption }}
           {%- if (id == 'inbox') and unread %} <span class="badge">{{ unread }}</span>{% endif -%}
         </a>
       </li>

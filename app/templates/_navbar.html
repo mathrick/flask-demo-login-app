@@ -7,11 +7,12 @@
                 [('sign_up', 'Sign up'),
                  ('login', 'Login')])
  -%}
-{% set navbar_right = [('populate-users', 'Create some users'),
-                       ('inbox', 'Inbox'), 
+{% set navbar_right = [('populate-users', 'Create some users')]
+                      +
+                      ([('inbox', 'Inbox'), 
                        ('logout', 'Log out')] 
                       if user else 
-                      []
+                      [])
  -%}
 {% set active_page = active_page|default('index') -%}
 

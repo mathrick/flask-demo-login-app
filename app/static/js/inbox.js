@@ -16,8 +16,22 @@ InboxApp.controller('MessageCtrl',
                          });
                      }])
 
+InboxApp.controller('ComposeCtrl', 
+                    ['$scope', '$http', '$routeParams', 
+                     function InboxCtrl ($scope, $http, $params) {
+                         $http.get('/api/users').success(function(data) {
+                             $scope.users = data;
+                         });
+
+                         $scope.message = {};
+                     }])
+
 InboxApp.config(['$routeProvider', function($route) {
     $route
+        .when('/message/compose', {
+            templateUrl: '/static/angular/compose.html',
+            controller: 'ComposeCtrl'
+        })
         .when('/message/:messageId', {
             templateUrl: '/static/angular/message.html',
             controller: 'MessageCtrl'

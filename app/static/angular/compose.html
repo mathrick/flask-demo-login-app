@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a href="/inbox/" class="btn btn-default"><span class="glyphicon glyphicon-trash"/></a>
+        <span class="text-muted">Compose new message</span></h3></div>
+    <div class="form-horizontal panel-body">
+      <form name="compose" role="form">
+        <div class="control-group" ng-class="{'has-error': compose.recipient.$invalid && !compose.recipient.$pristine}">
+          <label for="recipient" class="col-sm-2 control-label">To:</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+              <input class="form-control" name="recipient" ng-model="message.recipient" placeholder="Recipient" required/>
+            </div>
+          </div>
+        </div>
+        <div class="control-group" ng-class="{'has-error': compose.title.$invalid && !compose.title.$pristine}">
+          <label for="title" class="col-sm-2 control-label">Title:</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
+              <input class="form-control" name="title" ng-model="message.title" placeholder="Subject" required/>
+            </div>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <textarea class="form-control" rows="10" ng-model="message.text" placeholder="Type your message here"/>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>  
+</div>

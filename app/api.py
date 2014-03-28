@@ -69,6 +69,13 @@ class Message(Resource):
         message.unread = data['unread']
         db.session.commit()
 
+class UserList(Resource):
+    @api_login_required
+    def get(self):
+        return {user.name: user.email for
+                user in models.User.query.filter(models.User.id != current_user.id).all()}
+
 api = Api(app)
 api.add_resource(MessageList, '/api/message/', endpoint='api_message_list')
 api.add_resource(Message, '/api/message/<int:id>', endpoint='api_message')
+api.add_resource(UserList, '/api/users/', endpoint='api_user_list')

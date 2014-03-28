@@ -1,4 +1,4 @@
-var InboxApp = angular.module('InboxApp', ['ngRoute']);
+var InboxApp = angular.module('InboxApp', ['ngRoute', 'ui.bootstrap']);
 
 InboxApp.controller('InboxCtrl', 
                     ['$scope', '$http',
@@ -21,6 +21,7 @@ InboxApp.controller('ComposeCtrl',
                      function InboxCtrl ($scope, $http, $params) {
                          $http.get('/api/users').success(function(data) {
                              $scope.users = data;
+                             $scope.emails = Object.keys(data);
                          });
 
                          $scope.message = {};

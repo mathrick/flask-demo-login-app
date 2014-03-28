@@ -72,7 +72,7 @@ class Message(Resource):
 class UserList(Resource):
     @api_login_required
     def get(self):
-        return {user.name: user.email for
+        return {user.email: user.name for
                 user in models.User.query.filter(models.User.id != current_user.id).all()}
 
 api = Api(app)

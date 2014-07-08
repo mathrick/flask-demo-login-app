@@ -1,6 +1,6 @@
 Basic login app
 ===============
-This is a simple webapp implementing login functionality, built on Flask and AngularJS.
+This is a simple webapp implementing login functionality, built on Flask and AngularJS. It doesn't really do anything useful as such, but it does implement the meat of what many apps need, ie. sign up, login, and a trivial messaging system between users. If you were writing a serious app, it would very likely pass through a stage much like this.
 
 Installing and running
 ======================

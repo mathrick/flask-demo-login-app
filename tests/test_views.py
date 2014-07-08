@@ -23,7 +23,7 @@ class TestSignUp(FlaskTestCase):
 
     def test_login(self):
         rv = self.client.get(url_for("login"))
-        assert "<form action=\"/login\" method=\"post\">" in rv.data.lower()
+        assert "<form action=\"/login?next=%2f\" method=\"post\">" in rv.data.lower()
 
         form = forms.SignUpForm(obj=self)
 

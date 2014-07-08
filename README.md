@@ -36,6 +36,24 @@ This will launch the test suite. If everything passes, you can now freely run th
 
     ./run.py
 
+Database setup
+-------
+The above will give you a running instance, but not actually a working system, since the database in non-test scenarios needs to be explicitly upgraded to the latest schema:
+
+    ./run.py db upgrade
+
+Later on, if you make some changes to the models, you will also need to prepare a migration representing the corresponding changes, and apply it afterwards:
+
+    ./run.py db migrate
+
+    # IMPORTANT: review and edit the created version file to make sure
+    # it does what you expect! Alembic is not perfect. Don't forget to
+    # commit it either
+
+    ./run.py db upgrade
+
+If you're not familiar with the concept of DB migrations, you can read about it [on Wikipedia](https://en.wikipedia.org/wiki/Schema_migration).
+
 Code
 ====
 
